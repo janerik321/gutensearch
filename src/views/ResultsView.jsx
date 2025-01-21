@@ -4,7 +4,6 @@ import { AppContext } from "../App";
 
 export default function ResultsView() {
   const params = useParams();
-  // console.log(useParams());
   const { loading, setLoading, error, setError, result, setResult } =
     useContext(AppContext);
 
@@ -13,46 +12,42 @@ export default function ResultsView() {
       try {
         setError(null);
         setLoading(true);
+        console.log(`fetching ${params.category}...`);
         const response = await fetch(
           `https://gutendex.com//books?topic=${params.category}`
         );
-        if (!response.ok) {
-          throw new Error(`Failed to fetch the ${category} category`);
-        }
+        // if (!response.ok) {
+        //   throw new Error(`Failed to fetch the ${category} category`);
+        // }
+        console.log("...");
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setResult(data);
+        console.log(result);
       } catch (err) {
         setError(err.message);
       } finally {
         setLoading(false);
+        console.log("done!");
       }
     };
     fetchResult();
   }, []);
 
-  // const fetchResult = async () => {
-  //   const response = await fetch(
-  //     `https://gutendex.com//books?topic=${params.category}`
-  //   );
-
-  //   const data = await response.json();
-
-  //   console.log(data);
-  //   setResult(data);
-  // };
-
-  // fetchResult();
-
+  console.log(result);
   return (
-    <>
+    <div style={{ width: "80ch", margin: "auto" }}>
+      {loading && <p>Fetching...</p>}
       <h3>{params.category.toUpperCase()}</h3>
 
-      {result.results.map((book) => (
-        <li key={book.id}>
-          <Link to="/">{book.title}</Link>
-        </li>
-      ))}
-    </>
+      {!loading &&
+        result.results.map((book) => (
+          <li key={book.id}>
+            <Link to={`/book/${book.id}`}>{book.title}</Link>
+          </li>
+        ))}
+
+      <button>Next</button>
+    </div>
   );
 }

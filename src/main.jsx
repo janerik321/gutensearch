@@ -6,6 +6,7 @@ import App from "./App.jsx";
 import NotFound from "./views/NotFound";
 import HomeView from "./views/HomeView";
 import ResultsView from "./views/ResultsView.jsx";
+import BookView from "./views/BookView.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +16,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomeView /> },
       { path: "*", element: <NotFound /> },
       { path: "/category/:category", element: <ResultsView /> },
+      { path: "/book/:id", element: <BookView /> },
     ],
   },
 ]);

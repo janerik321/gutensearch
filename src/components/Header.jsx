@@ -5,10 +5,13 @@ export default function Header() {
     <>
       <div
         style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
           backgroundColor: "#A67D7D",
           padding: "0.5rem",
           color: "white",
-          textAlign: "center",
+          //   textAlign: "center",
         }}
       >
         <Link to="/">

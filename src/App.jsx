@@ -8,7 +8,7 @@ export const AppContext = createContext();
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [result, setResult] = useState(null);
+  const [result, setResult] = useState([]);
 
   return (
     <AppContext.Provider
