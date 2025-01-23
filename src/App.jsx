@@ -8,7 +8,9 @@ export const AppContext = createContext();
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState(null);
+  const [book, setBook] = useState(null);
+  const [currentFetch, setCurrentFetch] = useState(null);
 
   return (
     <AppContext.Provider
@@ -19,6 +21,10 @@ export default function App() {
         setError,
         result,
         setResult,
+        book,
+        setBook,
+        currentFetch,
+        setCurrentFetch,
       }}
     >
       <Header />

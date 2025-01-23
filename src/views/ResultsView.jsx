@@ -1,20 +1,32 @@
 import { useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import { AppContext } from "../App";
+import NextButton from "../components/NextButton";
 
 export default function ResultsView() {
   const params = useParams();
-  const { loading, setLoading, error, setError, result, setResult } =
-    useContext(AppContext);
+  const {
+    loading,
+    setLoading,
+    error,
+    setError,
+    result,
+    setResult,
+    currentFetch,
+    setCurrentFetch,
+  } = useContext(AppContext);
 
   useEffect(() => {
     const fetchResult = async () => {
       try {
+        const fetcher = params.search;
         setError(null);
         setLoading(true);
-        console.log(`fetching ${params.category}...`);
+        console.log(params);
+        console.log(`fetching ${params.search}...`);
         const response = await fetch(
-          `https://gutendex.com//books?topic=${params.category}`
+          `https://gutendex.com//books?topic=${params.search}`
+          // currentFetch
         );
         // if (!response.ok) {
         //   throw new Error(`Failed to fetch the ${category} category`);
@@ -32,22 +44,23 @@ export default function ResultsView() {
       }
     };
     fetchResult();
-  }, []);
+  }, [params]);
 
   console.log(result);
   return (
     <div style={{ width: "80ch", margin: "auto" }}>
       {loading && <p>Fetching...</p>}
-      <h3>{params.category.toUpperCase()}</h3>
+      <h3>{params.search.toUpperCase()}</h3>
 
-      {!loading &&
+      {result &&
         result.results.map((book) => (
           <li key={book.id}>
             <Link to={`/book/${book.id}`}>{book.title}</Link>
           </li>
         ))}
 
-      <button>Next</button>
+      {/* <Link to={result.next}>Next</Link> */}
+      {/* <NextButton /> */}
     </div>
   );
 }

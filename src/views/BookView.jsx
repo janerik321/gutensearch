@@ -1,24 +1,26 @@
-import { useContext, useEffect } from "react";
-import { AppContext } from "../App";
+import { useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { AppContext } from "../App";
+import Language from "../components/Language";
 
 export default function BookView() {
   const params = useParams();
-  // console.log(result);
-  console.log(params);
-  const { loading, setLoading, error, setError, result, setResult } =
+
+  // console.log(params);
+  const { loading, setLoading, error, setError, book, setBook } =
     useContext(AppContext);
 
+  // setLoading(true);
   useEffect(() => {
     console.log("Fetching book...");
-    const fetchResult = async () => {
+    const fetchBook = async () => {
       try {
         setError(null);
         setLoading(true);
         const response = await fetch(`https://gutendex.com/books/${params.id}`);
-
+        // husk search (/books?search=) og topic (/books?topic=)
         const data = await response.json();
-        setResult(data);
+        setBook(data);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -26,29 +28,47 @@ export default function BookView() {
         console.log("Done!");
       }
     };
-    fetchResult();
+    fetchBook();
   }, []);
 
-  useEffect(() => {
-    console.log("result updated");
-  }, [result]);
+  // useEffect(() => {
+  //   console.log("result updated");
+  // }, [book]);
 
-  console.log(result);
-
-  console.log(result.title);
-  console.log(result.formats["image/jpeg"]);
   return (
     <div
       style={{ display: "flex", justifyContent: "center", paddingTop: "2rem" }}
     >
+      {loading && <p>Fetching...</p>}
       {/* <p>BookView</p> */}
-      <div style={{ display: "flex", gap: "2rem" }}>
-        <img src={result.formats["image/jpeg"]} />
-        <div>
-          <h2>{result.title}</h2>
-          <h4>by {result.authors[0].name}</h4>
+      {console.log(book)}
+      {book && (
+        <div style={{ display: "flex", gap: "2rem" }}>
+          <img src={book.formats["image/jpeg"]} />
+          <div>
+            <h2>{book.title}</h2>
+            <h3>by {book.authors.map((author) => `${author.name} `)} </h3>
+            <div>
+              {/* <h4>Subjects:</h4> */}
+              {book.subjects.map((subject) => (
+                <p style={{ fontSize: "14px" }}>{subject}</p>
+              ))}
+            </div>
+            <p>
+              Language: {book.languages.map((language) => Language(language))}{" "}
+            </p>
+            <p>Downloads: {book.download_count}</p>
+            <p>Links:</p>
+            <div>
+              <div>
+                <button>HTML</button>
+                <button>Plain text</button>
+              </div>
+              <button>❤️Add to favorites</button>
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

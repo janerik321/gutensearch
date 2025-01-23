@@ -9,30 +9,32 @@ export default function Header() {
           flexDirection: "column",
           alignItems: "center",
           backgroundColor: "#A67D7D",
-          padding: "0.5rem",
+          padding: "1rem",
           color: "white",
+          gap: "1rem",
           //   textAlign: "center",
         }}
       >
         <Link to="/">
           <h1>Gutensearch</h1>
         </Link>
-        <h3>Search goes here...</h3>
+
+        <input type="text" />
         <nav>
-          <Link to="/category/fiction">Fiction</Link>
-          <Link to="/category/mystery">Mystery</Link>
-          <Link to="/category/thriller">Thriller</Link>
-          <Link to="/category/romance">Romance</Link>
-          <Link to="/category/fantasy">Fantasy</Link>
-          <Link to="/category/morality">Morality</Link>
-          <Link to="/category/society">Society</Link>
-          <Link to="/category/power">Power</Link>
-          <Link to="/category/justice">Justice</Link>
-          <Link to="/category/adventure">Adventure</Link>
-          <Link to="/category/tragedy">Tragedy</Link>
-          <Link to="/category/war">War</Link>
-          <Link to="/category/philosophy">Philosophy</Link>
-          <Link to="/category/favorites">❤️Favorites</Link>
+          <Link to="/search/fiction">Fiction</Link>
+          <Link to="/search/mystery">Mystery</Link>
+          <Link to="/search/thriller">Thriller</Link>
+          <Link to="/search/romance">Romance</Link>
+          <Link to="/search/fantasy">Fantasy</Link>
+          <Link to="/search/morality">Morality</Link>
+          <Link to="/search/society">Society</Link>
+          <Link to="/search/power">Power</Link>
+          <Link to="/search/justice">Justice</Link>
+          <Link to="/search/adventure">Adventure</Link>
+          <Link to="/search/tragedy">Tragedy</Link>
+          <Link to="/search/war">War</Link>
+          <Link to="/search/philosophy">Philosophy</Link>
+          <Link to="/search/favorites">❤️Favorites</Link>
         </nav>
       </div>
       {/* <Outlet /> */}
