@@ -11,6 +11,7 @@ export default function App() {
   const [result, setResult] = useState(null);
   const [book, setBook] = useState(null);
   const [currentFetch, setCurrentFetch] = useState(null);
+  const [search, setSearch] = useState("");
 
   return (
     <AppContext.Provider
@@ -25,6 +26,8 @@ export default function App() {
         setBook,
         currentFetch,
         setCurrentFetch,
+        search,
+        setSearch,
       }}
     >
       <Header />

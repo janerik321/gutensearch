@@ -15,6 +15,6 @@ h1 {
 
 input {
   border: none;
-  border-radius: 20px;
+  /* border-radius: 20px; */
   font-size: 1.2rem;
 }

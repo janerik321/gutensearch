@@ -6,11 +6,9 @@ import Language from "../components/Language";
 export default function BookView() {
   const params = useParams();
 
-  // console.log(params);
   const { loading, setLoading, error, setError, book, setBook } =
     useContext(AppContext);
 
-  // setLoading(true);
   useEffect(() => {
     console.log("Fetching book...");
     const fetchBook = async () => {
@@ -18,7 +16,7 @@ export default function BookView() {
         setError(null);
         setLoading(true);
         const response = await fetch(`https://gutendex.com/books/${params.id}`);
-        // husk search (/books?search=) og topic (/books?topic=)
+
         const data = await response.json();
         setBook(data);
       } catch (err) {
@@ -31,16 +29,12 @@ export default function BookView() {
     fetchBook();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("result updated");
-  // }, [book]);
-
   return (
     <div
       style={{ display: "flex", justifyContent: "center", paddingTop: "2rem" }}
     >
       {loading && <p>Fetching...</p>}
-      {/* <p>BookView</p> */}
+
       {console.log(book)}
       {book && (
         <div style={{ display: "flex", gap: "2rem" }}>
@@ -49,7 +43,6 @@ export default function BookView() {
             <h2>{book.title}</h2>
             <h3>by {book.authors.map((author) => `${author.name} `)} </h3>
             <div>
-              {/* <h4>Subjects:</h4> */}
               {book.subjects.map((subject) => (
                 <p style={{ fontSize: "14px" }}>{subject}</p>
               ))}
@@ -61,8 +54,15 @@ export default function BookView() {
             <p>Links:</p>
             <div>
               <div>
-                <button>HTML</button>
-                <button>Plain text</button>
+                <a href={book.formats["text/html"]} className="button">
+                  HTML
+                </a>
+                <a
+                  href={book.formats["text/plain; charset=us-ascii"]}
+                  className="button"
+                >
+                  Plain text
+                </a>
               </div>
               <button>❤️Add to favorites</button>
             </div>
