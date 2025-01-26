@@ -6,8 +6,22 @@ import Language from "../components/Language";
 export default function BookView() {
   const params = useParams();
 
-  const { loading, setLoading, error, setError, book, setBook } =
-    useContext(AppContext);
+  const {
+    loading,
+    setLoading,
+    error,
+    setError,
+    book,
+    setBook,
+    favorites,
+    setFavorites,
+  } = useContext(AppContext);
+
+  function saveToLocal() {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }
+
+  saveToLocal();
 
   useEffect(() => {
     console.log("Fetching book...");
@@ -27,8 +41,14 @@ export default function BookView() {
       }
     };
     fetchBook();
+
+    // const storedFavorites = localStorage.getItem("favorites");
+    // if (storedFavorites) {
+    //   setFavorites(JSON.parse(storedFavorites));
+    // }
   }, []);
 
+  console.log(favorites);
   return (
     <div
       style={{ display: "flex", justifyContent: "center", paddingTop: "2rem" }}
@@ -64,7 +84,11 @@ export default function BookView() {
                   Plain text
                 </a>
               </div>
-              <button>❤️Add to favorites</button>
+              <button
+                onClick={() => setFavorites((prev) => [...prev, book.id])}
+              >
+                ❤️Add to favorites
+              </button>
             </div>
           </div>
         </div>

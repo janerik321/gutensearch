@@ -12,6 +12,7 @@ export default function App() {
   const [book, setBook] = useState(null);
   const [currentFetch, setCurrentFetch] = useState(null);
   const [search, setSearch] = useState("");
+  const [favorites, setFavorites] = useState([]);
 
   return (
     <AppContext.Provider
@@ -28,6 +29,8 @@ export default function App() {
         setCurrentFetch,
         search,
         setSearch,
+        favorites,
+        setFavorites,
       }}
     >
       <Header />

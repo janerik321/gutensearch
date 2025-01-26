@@ -1,14 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../App";
 
 export default function Header() {
   const { search, setSearch, page, setPage } = useContext(AppContext);
-
-  const handleSubmit = () => {
-    console.log(`search=${search}`);
-    // Putt `search=${search}` evt `search/search=${search}` inn i adressefeltet
-  };
+  const navigate = useNavigate();
 
   // const params = new URLSearchParams()
   return (
@@ -28,8 +24,7 @@ export default function Header() {
         <Link to="/">
           <h1>Gutensearch</h1>
         </Link>
-
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={() => navigate(`/search/search=${search}`)}>
           <input
             type="text"
             placeholder="Search..."
