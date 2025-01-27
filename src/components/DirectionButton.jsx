@@ -7,12 +7,12 @@ export default function DirectionButton(props) {
   const params = useParams();
 
   // console.log(params.search);
-  // console.log(result);
+  console.log(result);
 
   let page = "";
 
   if (props.direction === "next") {
-    // console.log("next");
+    console.log("next");
     page = result.next.slice(28);
   } else if (props.direction === "previous") {
     // console.log("previous");

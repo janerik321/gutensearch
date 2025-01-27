@@ -56,7 +56,7 @@ export default function Header() {
           <Link to="/search/topic=tragedy">Tragedy</Link>
           <Link to="/search/topic=war">War</Link>
           <Link to="/search/topic=philosophy">Philosophy</Link>
-          <Link to="/search/favorites">❤️Favorites</Link>
+          <Link to="/favorites/">❤️Favorites</Link>
         </nav>
       </div>
     </>

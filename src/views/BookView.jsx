@@ -41,11 +41,6 @@ export default function BookView() {
       }
     };
     fetchBook();
-
-    // const storedFavorites = localStorage.getItem("favorites");
-    // if (storedFavorites) {
-    //   setFavorites(JSON.parse(storedFavorites));
-    // }
   }, []);
 
   console.log(favorites);
@@ -58,7 +53,10 @@ export default function BookView() {
       {console.log(book)}
       {book && (
         <div style={{ display: "flex", gap: "2rem" }}>
-          <img src={book.formats["image/jpeg"]} />
+          <img
+            src={book.formats["image/jpeg"]}
+            style={{ boxShadow: "0px 4px 10px #bbb" }}
+          />
           <div>
             <h2>{book.title}</h2>
             <h3>by {book.authors.map((author) => `${author.name} `)} </h3>
@@ -84,9 +82,7 @@ export default function BookView() {
                   Plain text
                 </a>
               </div>
-              <button
-                onClick={() => setFavorites((prev) => [...prev, book.id])}
-              >
+              <button onClick={() => setFavorites((prev) => [...prev, book])}>
                 ❤️Add to favorites
               </button>
             </div>

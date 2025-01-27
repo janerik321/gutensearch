@@ -7,6 +7,7 @@ import NotFound from "./views/NotFound";
 import HomeView from "./views/HomeView";
 import ResultsView from "./views/ResultsView.jsx";
 import BookView from "./views/BookView.jsx";
+import FavoritesView from "./views/FavoritesView.jsx";
 
 const router = createBrowserRouter([
   {
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
       { path: "*", element: <NotFound /> },
       { path: "/search/:search", element: <ResultsView /> },
       { path: "/book/:id", element: <BookView /> },
+      { path: "/favorites/", element: <FavoritesView /> },
     ],
   },
 ]);

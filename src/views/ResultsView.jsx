@@ -2,6 +2,7 @@ import { useEffect, useContext } from "react";
 import { useParams, Link } from "react-router-dom";
 import { AppContext } from "../App";
 import DirectionButton from "../components/DirectionButton";
+import BookCard from "../components/BookCard";
 
 export default function ResultsView() {
   const params = useParams();
@@ -50,18 +51,24 @@ export default function ResultsView() {
 
   // console.log(result);
   return (
-    <div style={{ width: "80ch", margin: "auto" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       {loading && <p>Fetching...</p>}
       <h3>{params.search.toUpperCase()}</h3>
       {result && (
         <div>
-          <ol>
-            {result.results.map((book) => (
-              <li key={book.id}>
-                <Link to={`/book/${book.id}`}>{book.title}</Link>
-              </li>
-            ))}
-          </ol>
+          {/* <ol> */}
+          {result.results.map((book) => (
+            // <li key={book.id}>
+            <BookCard book={book} />
+            // </li>
+          ))}
+          {/* </ol> */}
           {/* {console.log(result)} */}
           {result.previous && <DirectionButton direction="previous" />}
           {result.next && <DirectionButton direction="next" />}
