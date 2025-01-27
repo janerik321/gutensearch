@@ -6,17 +6,30 @@ import RemoveFavoriteButton from "../components/RemoveFavoriteButton";
 export default function FavoritesView() {
   const { favorites, setFavorites } = useContext(AppContext);
 
+  function saveToLocal() {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }
+
+  saveToLocal();
+
   console.log(favorites);
-  RemoveFavoriteButton("a");
+  //   RemoveFavoriteButton("a");
+
   return (
-    <>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
       {favorites.map((book) => (
-        <div style={{ display: "flex" }}>
+        <div key={book.id} style={{ display: "flex" }}>
           <BookCard book={book} />
-          {console.log(book)}
+          {/* {console.log(book)} */}
           <RemoveFavoriteButton bookId={book.id} />
         </div>
       ))}
-    </>
+    </div>
   );
 }

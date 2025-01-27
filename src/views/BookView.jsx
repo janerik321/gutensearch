@@ -82,7 +82,13 @@ export default function BookView() {
                   Plain text
                 </a>
               </div>
-              <button onClick={() => setFavorites((prev) => [...prev, book])}>
+              <button
+                onClick={() => {
+                  if (!favorites.includes(book)) {
+                    setFavorites((prev) => [...prev, book]);
+                  }
+                }}
+              >
                 ❤️Add to favorites
               </button>
             </div>

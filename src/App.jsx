@@ -9,7 +9,7 @@ export default function App() {
   function retrieveFromLocal() {
     const storedFavorites = localStorage.getItem("favorites");
     if (storedFavorites) {
-      console.log(JSON.parse(storedFavorites));
+      // console.log(JSON.parse(storedFavorites));
       return JSON.parse(storedFavorites);
     } else {
       console.log("empty");

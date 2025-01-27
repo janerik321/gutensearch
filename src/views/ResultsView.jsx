@@ -6,16 +6,8 @@ import BookCard from "../components/BookCard";
 
 export default function ResultsView() {
   const params = useParams();
-  const {
-    loading,
-    setLoading,
-    error,
-    setError,
-    result,
-    setResult,
-    currentFetch,
-    setCurrentFetch,
-  } = useContext(AppContext);
+  const { loading, setLoading, error, setError, result, setResult } =
+    useContext(AppContext);
 
   // console.log(params);
 
@@ -31,9 +23,9 @@ export default function ResultsView() {
           `https://gutendex.com/books/?${params.search}`
           // currentFetch
         );
-        // if (!response.ok) {
-        //   throw new Error(`Failed to fetch the ${category} category`);
-        // }
+        if (!response.ok) {
+          throw new Error(`Failed to fetch the ${category} category`);
+        }
         // console.log("...");
         const data = await response.json();
         // console.log(data);
@@ -61,21 +53,15 @@ export default function ResultsView() {
       {loading && <p>Fetching...</p>}
       <h3>{params.search.toUpperCase()}</h3>
       {result && (
-        <div>
-          {/* <ol> */}
+        <div style={{ marginBottom: "2rem" }}>
           {result.results.map((book) => (
-            // <li key={book.id}>
             <BookCard book={book} />
-            // </li>
           ))}
-          {/* </ol> */}
-          {/* {console.log(result)} */}
+
           {result.previous && <DirectionButton direction="previous" />}
           {result.next && <DirectionButton direction="next" />}
         </div>
       )}
-
-      {/* <Link to={result.next}>Next</Link> */}
     </div>
   );
 }

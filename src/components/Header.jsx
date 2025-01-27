@@ -6,7 +6,6 @@ export default function Header() {
   const { search, setSearch, page, setPage } = useContext(AppContext);
   const navigate = useNavigate();
 
-  // const params = new URLSearchParams()
   return (
     <>
       <div
@@ -34,6 +33,7 @@ export default function Header() {
           />
           <input
             type="submit"
+            value="Go"
             style={{
               padding: "0.2rem 0.5rem",
               borderRadius: "0 20px 20px 0",
@@ -42,21 +42,28 @@ export default function Header() {
           />
         </form>
 
-        <nav>
-          <Link to="/search/topic=fiction">Fiction</Link>
-          <Link to="/search/topic=mystery">Mystery</Link>
-          <Link to="/search/topic=thriller">Thriller</Link>
-          <Link to="/search/topic=romance">Romance</Link>
-          <Link to="/search/topic=fantasy">Fantasy</Link>
-          <Link to="/search/topic=morality">Morality</Link>
-          <Link to="/search/topic=society">Society</Link>
-          <Link to="/search/topic=power">Power</Link>
-          <Link to="/search/topic=justice">Justice</Link>
-          <Link to="/search/topic=adventure">Adventure</Link>
-          <Link to="/search/topic=tragedy">Tragedy</Link>
-          <Link to="/search/topic=war">War</Link>
-          <Link to="/search/topic=philosophy">Philosophy</Link>
-          <Link to="/favorites/">❤️Favorites</Link>
+        <nav
+          style={{
+            width: "50%",
+            margin: "auto",
+
+            textAlign: "center",
+          }}
+        >
+          <Link to="/search/topic=fiction">Fiction </Link>
+          <Link to="/search/topic=mystery"> Mystery </Link>
+          <Link to="/search/topic=thriller"> Thriller </Link>
+          <Link to="/search/topic=romance"> Romance </Link>
+          <Link to="/search/topic=fantasy"> Fantasy </Link>
+          <Link to="/search/topic=morality"> Morality </Link>
+          <Link to="/search/topic=society"> Society </Link>
+          <Link to="/search/topic=power"> Power </Link>
+          <Link to="/search/topic=justice"> Justice </Link>
+          <Link to="/search/topic=adventure"> Adventure </Link>
+          <Link to="/search/topic=tragedy"> Tragedy </Link>
+          <Link to="/search/topic=war"> War </Link>
+          <Link to="/search/topic=philosophy"> Philosophy </Link>
+          <Link to="/favorites/"> ❤️Favorites</Link>
         </nav>
       </div>
     </>

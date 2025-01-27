@@ -1,26 +1,17 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../App";
 
 export default function RemoveFavoriteButton(bookId) {
   const { favorites, setFavorites } = useContext(AppContext);
 
   function removeFavorite(parameter) {
-    const filteredFavorites = favorites.filter(
-      (e) => e.id !== parameter.bookId
+    setFavorites((favorites) =>
+      favorites.filter((e) => e.id !== parameter.bookId)
     );
 
-    setFavorites(filteredFavorites);
-
-    if (favorites === filteredFavorites) {
-      console.log("abc");
-    } else {
-      console.log("123");
-    }
-
-    // localStorage.setItem("favorites", JSON.stringify(favorites));
+    // console.log(favorites);
   }
 
-  console.log(favorites);
   return (
     <button
       onClick={() => removeFavorite(bookId)}
