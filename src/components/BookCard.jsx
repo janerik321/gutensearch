@@ -6,7 +6,7 @@ export default function BookCard(prop) {
   //   console.log(book);
   return (
     <Link
-      to={`/book/${book.id}`}
+      to={`/gutensearch/book/${book.id}`}
       style={{
         height: "180px",
         width: "500px",
@@ -24,6 +24,7 @@ export default function BookCard(prop) {
         style={{
           //   border: "1px solid #ddd",
           boxShadow: "0px 4px 10px #bbb",
+          maxWidth: "200px",
         }}
       />
       <div style={{}}>

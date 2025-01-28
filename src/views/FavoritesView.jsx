@@ -23,6 +23,9 @@ export default function FavoritesView() {
         alignItems: "center",
       }}
     >
+      {favorites.length === 0 && (
+        <h3 style={{ marginTop: "2rem" }}>No favorites to display</h3>
+      )}
       {favorites.map((book) => (
         <div key={book.id} style={{ display: "flex" }}>
           <BookCard book={book} />

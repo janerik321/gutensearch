@@ -27,6 +27,7 @@ export default function DirectionButton(props) {
           style={{
             border: "1px solid grey",
             padding: "2px 7px",
+            margin: "0 0.5rem",
           }}
         >
           {props.direction}

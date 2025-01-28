@@ -48,12 +48,13 @@ export default function ResultsView() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        paddingTop: "2rem",
       }}
     >
       {loading && <p>Fetching...</p>}
       <h3>{params.search.toUpperCase()}</h3>
-      {result && (
-        <div style={{ marginBottom: "2rem" }}>
+      {!loading && result && (
+        <div style={{ marginBottom: "2rem", textAlign: "center" }}>
           {result.results.map((book) => (
             <BookCard book={book} />
           ))}

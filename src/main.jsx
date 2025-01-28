@@ -11,14 +11,14 @@ import FavoritesView from "./views/FavoritesView.jsx";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/gutensearch/",
     element: <App />,
     children: [
       { index: true, element: <HomeView /> },
-      { path: "*", element: <NotFound /> },
-      { path: "/search/:search", element: <ResultsView /> },
-      { path: "/book/:id", element: <BookView /> },
-      { path: "/favorites/", element: <FavoritesView /> },
+      { path: "/gutensearch/*", element: <NotFound /> },
+      { path: "/gutensearch/search/:search", element: <ResultsView /> },
+      { path: "/gutensearch/book/:id", element: <BookView /> },
+      { path: "/gutensearch/favorites/", element: <FavoritesView /> },
     ],
   },
 ]);
