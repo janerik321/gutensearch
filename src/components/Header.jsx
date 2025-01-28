@@ -9,6 +9,12 @@ export default function Header() {
 
   console.log(Categories());
 
+  function handleSubmit(e, search) {
+    e.preventDefault();
+    console.log(e);
+    navigate(`/gutensearch/search/search=${search}`);
+  }
+
   return (
     <>
       <div
@@ -26,7 +32,8 @@ export default function Header() {
         <Link to="/gutensearch/">
           <h1>Gutensearch</h1>
         </Link>
-        <form onSubmit={() => navigate(`/gutensearch/search/search=${search}`)}>
+        {/* <form onSubmit={() => navigate(`/gutensearch/search/search=${search}`)}> */}
+        <form onSubmit={(e) => handleSubmit(e, search)}>
           <input
             type="text"
             placeholder="Search..."
@@ -47,10 +54,11 @@ export default function Header() {
 
         <nav
           style={{
-            width: "50%",
-            margin: "auto",
-
-            textAlign: "center",
+            // maxWidth: "1000px",
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            gap: "1.5rem",
           }}
         >
           {Categories().map((category) => (

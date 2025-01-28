@@ -16,6 +16,7 @@ export default function BookCard(prop) {
         gap: "2rem",
         border: "1px solid #ccc",
         backgroundColor: "#fcfcfc",
+        overflow: "hidden",
       }}
     >
       <img
