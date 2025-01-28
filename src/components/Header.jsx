@@ -1,10 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
 import { AppContext } from "../App";
+import Categories from "./Categories";
 
 export default function Header() {
   const { search, setSearch, page, setPage } = useContext(AppContext);
   const navigate = useNavigate();
+
+  console.log(Categories());
 
   return (
     <>
@@ -20,7 +23,7 @@ export default function Header() {
           //   textAlign: "center",
         }}
       >
-        <Link to="/">
+        <Link to="/gutensearch/">
           <h1>Gutensearch</h1>
         </Link>
         <form onSubmit={() => navigate(`/gutensearch/search/search=${search}`)}>
@@ -50,19 +53,15 @@ export default function Header() {
             textAlign: "center",
           }}
         >
-          <Link to="/gutensearch/search/topic=fiction">Fiction </Link>
-          <Link to="/gutensearch/search/topic=mystery"> Mystery </Link>
-          <Link to="/gutensearch/search/topic=thriller"> Thriller </Link>
-          <Link to="/gutensearch/search/topic=romance"> Romance </Link>
-          <Link to="/gutensearch/search/topic=fantasy"> Fantasy </Link>
-          <Link to="/gutensearch/search/topic=morality"> Morality </Link>
-          <Link to="/gutensearch/search/topic=society"> Society </Link>
-          <Link to="/gutensearch/search/topic=power"> Power </Link>
-          <Link to="/gutensearch/search/topic=justice"> Justice </Link>
-          <Link to="/gutensearch/search/topic=adventure"> Adventure </Link>
-          <Link to="/gutensearch/search/topic=tragedy"> Tragedy </Link>
-          <Link to="/gutensearch/search/topic=war"> War </Link>
-          <Link to="/gutensearch/search/topic=philosophy"> Philosophy </Link>
+          {Categories().map((category) => (
+            <Link
+              to={`/gutensearch/search/topic=${category.toLowerCase()}`}
+              key={category}
+            >
+              {category}{" "}
+            </Link>
+          ))}
+
           <Link to="/gutensearch/favorites/"> ❤️Favorites</Link>
         </nav>
       </div>

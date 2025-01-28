@@ -56,7 +56,7 @@ export default function ResultsView() {
       {!loading && result && (
         <div style={{ marginBottom: "2rem" }}>
           {result.results.map((book) => (
-            <BookCard book={book} />
+            <BookCard book={book} key={book.id} />
           ))}
 
           {result.previous && <DirectionButton direction="previous" />}
