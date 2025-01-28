@@ -54,7 +54,7 @@ export default function ResultsView() {
       {loading && <p>Fetching...</p>}
       <h3>{params.search.toUpperCase()}</h3>
       {!loading && result && (
-        <div style={{ marginBottom: "2rem", textAlign: "center" }}>
+        <div style={{ marginBottom: "2rem" }}>
           {result.results.map((book) => (
             <BookCard book={book} />
           ))}
