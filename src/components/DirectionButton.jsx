@@ -23,7 +23,7 @@ export default function DirectionButton(props) {
     <>
       {result && (
         <Link
-          to={`/search/${page}`}
+          to={`/gutensearch/search/${page}`}
           style={{
             border: "1px solid grey",
             padding: "2px 7px",
