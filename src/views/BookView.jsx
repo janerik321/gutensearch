@@ -52,7 +52,7 @@ export default function BookView() {
 
       {console.log(book)}
       {book && (
-        <div style={{ display: "flex", gap: "2rem" }}>
+        <div style={{ maxWidth: "700px", display: "flex", gap: "2rem" }}>
           <img
             src={book.formats["image/jpeg"]}
             style={{ boxShadow: "0px 4px 10px #bbb" }}

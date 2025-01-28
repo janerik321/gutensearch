@@ -8,7 +8,7 @@ export default function BookCard(prop) {
     <Link
       to={`/gutensearch/book/${book.id}`}
       style={{
-        height: "180px",
+        minHeight: "180px",
         width: "500px",
         margin: "2rem 0 2rem 0",
         padding: "1rem",
@@ -26,11 +26,15 @@ export default function BookCard(prop) {
           //   border: "1px solid #ddd",
           boxShadow: "0px 4px 10px #bbb",
           maxWidth: "200px",
+          maxHeight: "146px",
         }}
       />
       <div style={{}}>
         <h3>{book.title}</h3>
-        <h4>by {book.authors.map((author) => `${author.name} `)} </h4>
+        {book.authors.length > 0 && (
+          <h4>by {book.authors.map((author) => `${author.name} `)} </h4>
+        )}
+
         <p>{book.languages.map((language) => Language(language))} </p>
       </div>
     </Link>
