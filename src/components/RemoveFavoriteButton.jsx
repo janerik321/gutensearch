@@ -8,7 +8,7 @@ export default function RemoveFavoriteButton(bookId) {
     setFavorites((favorites) =>
       favorites.filter((e) => e.id !== parameter.bookId)
     );
-
+    console.log(parameter.bookId);
     // console.log(favorites);
   }
 

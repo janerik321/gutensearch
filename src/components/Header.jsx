@@ -7,11 +7,11 @@ export default function Header() {
   const { search, setSearch, page, setPage } = useContext(AppContext);
   const navigate = useNavigate();
 
-  console.log(Categories());
+  // console.log(Categories());
 
   function handleSubmit(e, search) {
     e.preventDefault();
-    console.log(e);
+    // console.log(e);
     navigate(`/gutensearch/search/search=${search}`);
   }
 

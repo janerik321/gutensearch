@@ -3,7 +3,7 @@ import Language from "./Language";
 
 export default function BookCard(prop) {
   const book = prop.book;
-  //   console.log(book);
+
   return (
     <Link
       to={`/gutensearch/book/${book.id}`}
