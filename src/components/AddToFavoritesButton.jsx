@@ -1,33 +1,28 @@
 import { useContext } from "react";
 import { AppContext } from "../App";
+import "./addToFavoritesButton.css";
 
 export default function AddToFavoritesButton(bookProp) {
   const { favorites, setFavorites } = useContext(AppContext);
   const book = bookProp.bookProp;
 
   function handleFavorite() {
-    if (!favorites.includes(book)) {
+    if (!favorites.some((currentBook) => currentBook.id === book.id)) {
       setFavorites((prev) => [...prev, book]);
     } else {
       setFavorites((favorites) => favorites.filter((e) => e.id !== book.id));
     }
   }
 
-  console.log(favorites);
-  console.log(book);
-  console.log(favorites.includes(book));
-  console.log(favorites.indexOf(book));
   return (
     <>
-      {/* {!favorites.includes(book) && (
-        <button onClick={handleFavorite}>🖤Add to favorites</button>
-      )}
-      {favorites.includes(book) && (
-        <button onClick={handleFavorite}>❤️Add to favorites</button>
-      )} */}
-      <button onClick={handleFavorite} style={{ padding: "4px 7px" }}>
-        {!favorites.includes(book) && "🖤"}
-        {favorites.includes(book) && "❤️"}
+      <button onClick={handleFavorite} id="add-to-favorites-button">
+        {!favorites.some((currentBook) => currentBook.id === book.id) && (
+          <div>💚</div>
+        )}
+        {favorites.some((currentBook) => currentBook.id === book.id) && (
+          <div id="heart">❤️</div>
+        )}
         Add to favorites
       </button>
     </>

@@ -3,7 +3,13 @@
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: "Frank Ruhl Libre";
+  /* font-family: "Frank Ruhl Libre"; */
+  /* font-family: "Open Sans"; */
+  /* font-family: "Roboto Flex"; */
+}
+
+:root {
+  /* font-size: 30px; */
 }
 
 nav a,

@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { AppContext } from "../App";
 import Language from "../components/Language";
 import AddToFavoritesButton from "../components/AddToFavoritesButton";
+import Spinner from "../components/Spinner";
 
 export default function BookView() {
   const params = useParams();
@@ -22,9 +23,7 @@ export default function BookView() {
 
   useEffect(() => {
     function saveToLocal() {
-      console.log("Saving to local storage...");
       localStorage.setItem("favorites", JSON.stringify(favorites));
-      console.log("Done saving");
     }
     saveToLocal();
   }, [favorites]);
@@ -49,14 +48,22 @@ export default function BookView() {
     fetchBook();
   }, []);
 
-  // console.log(favorites);
   return (
     <div
-      style={{ display: "flex", justifyContent: "center", padding: "2rem 0" }}
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        padding: "2rem 0",
+      }}
     >
-      {loading && <p>Fetching...</p>}
+      {loading && (
+        <>
+          <p>Fetching...</p>
+          <Spinner />
+        </>
+      )}
 
-      {/* {console.log(book)} */}
       {book && (
         <div style={{ maxWidth: "700px", display: "flex", gap: "2rem" }}>
           <div style={{ textAlign: "right" }}>
@@ -64,14 +71,19 @@ export default function BookView() {
               src={book.formats["image/jpeg"]}
               style={{
                 maxHeight: "300px",
-                // maxWidth: "200px",
-
                 boxShadow: "0px 4px 10px #bbb",
+                marginBottom: "0.5rem",
               }}
             />
             <p>Links:</p>
-            <div>
-              <div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "end",
+              }}
+            >
+              <div style={{ margin: "0.5rem 0" }}>
                 <a href={book.formats["text/html"]} className="button">
                   HTML
                 </a>
@@ -83,15 +95,7 @@ export default function BookView() {
                   Plain text
                 </a>
               </div>
-              {/* <button
-                onClick={() => {
-                  if (!favorites.includes(book)) {
-                    setFavorites((prev) => [...prev, book]);
-                  }
-                }}
-              >
-                ❤️Add to favorites🖤
-              </button> */}
+
               <AddToFavoritesButton bookProp={book} />
             </div>
           </div>
@@ -99,15 +103,9 @@ export default function BookView() {
             <h2>{book.title}</h2>
             <h3>by {book.authors.map((author) => `${author.name} `)} </h3>
             <br />
-            {/* subjects */}
 
             <div>
               <h4>Topics:</h4>
-              {/* {book.subjects.map((subject) => (
-                <p key={subject} style={{ fontSize: "14px" }}>
-                  {subject.replace(" -- Fiction", "")}
-                </p>
-              ))} */}
               {book.subjects.map((subject) => {
                 subjects += subject.replace(" -- Fiction", "") + " · ";
               })}{" "}
@@ -115,14 +113,12 @@ export default function BookView() {
             </div>
             <br />
 
-            {/* end subjects */}
-
             <p>
               Language: {book.languages.map((language) => Language(language))}{" "}
             </p>
             <p>Downloads: {book.download_count}</p>
             <br />
-            <h4>Synopsis:</h4>
+            <h4>Summary:</h4>
             <p>{book.summaries}</p>
           </div>
         </div>

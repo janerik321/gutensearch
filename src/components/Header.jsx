@@ -26,13 +26,11 @@ export default function Header() {
           padding: "1rem",
           color: "white",
           gap: "1rem",
-          //   textAlign: "center",
         }}
       >
         <Link to="/gutensearch/">
           <h1>Gutensearch</h1>
         </Link>
-        {/* <form onSubmit={() => navigate(`/gutensearch/search/search=${search}`)}> */}
         <form onSubmit={(e) => handleSubmit(e, search)}>
           <input
             type="text"
@@ -70,7 +68,7 @@ export default function Header() {
             </Link>
           ))}
 
-          <Link to="/gutensearch/favorites/"> ❤️Favorites</Link>
+          <Link to="/gutensearch/favorites/"> 🤍Favorites</Link>
         </nav>
       </div>
     </>

@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { AppContext } from "../App";
 import DirectionButton from "../components/DirectionButton";
 import BookCard from "../components/BookCard";
+import Spinner from "../components/Spinner";
 
 export default function ResultsView() {
   const params = useParams();
@@ -41,7 +42,7 @@ export default function ResultsView() {
     fetchResult();
   }, [params]);
 
-  // console.log(result);
+  console.log(result);
   return (
     <div
       style={{
@@ -51,10 +52,29 @@ export default function ResultsView() {
         paddingTop: "2rem",
       }}
     >
-      {loading && <p>Fetching...</p>}
-      <h3>{params.search.toUpperCase()}</h3>
+      {loading && (
+        <>
+          <p>{`Fetching ${params.search.slice(
+            params.search.indexOf("=") + 1
+          )}...`}</p>
+          <Spinner />
+        </>
+      )}
       {!loading && result && (
-        <div style={{ marginBottom: "2rem" }}>
+        <div
+          style={{
+            marginBottom: "2rem",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}
+        >
+          <h3 style={{ textAlign: "center" }}>
+            {`${result.count} results for ${params.search.slice(
+              params.search.indexOf("=") + 1
+            )}`}
+            {/* <Spinner /> */}
+          </h3>
           {result.results.map((book) => (
             <BookCard book={book} key={book.id} />
           ))}
