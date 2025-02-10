@@ -46,6 +46,7 @@ export default function Header() {
               padding: "0.2rem 0.5rem",
               borderRadius: "0 20px 20px 0",
               backgroundColor: "lightgreen",
+              color: "#000c",
             }}
           />
         </form>
@@ -55,8 +56,9 @@ export default function Header() {
             // maxWidth: "1000px",
             display: "flex",
             justifyContent: "center",
+            alignItems: "end",
             flexWrap: "wrap",
-            gap: "1.5rem",
+            gap: "0.5rem 1.5rem",
           }}
         >
           {Categories().map((category) => (
@@ -68,7 +70,7 @@ export default function Header() {
             </Link>
           ))}
 
-          <Link to="/gutensearch/favorites/"> 🤍Favorites</Link>
+          <Link to="/gutensearch/favorites/">🤍Favorites</Link>
         </nav>
       </div>
     </>

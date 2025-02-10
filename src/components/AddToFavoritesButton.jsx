@@ -5,6 +5,7 @@ import "./addToFavoritesButton.css";
 export default function AddToFavoritesButton(bookProp) {
   const { favorites, setFavorites } = useContext(AppContext);
   const book = bookProp.bookProp;
+  const text = bookProp.text;
 
   function handleFavorite() {
     if (!favorites.some((currentBook) => currentBook.id === book.id)) {
@@ -22,8 +23,8 @@ export default function AddToFavoritesButton(bookProp) {
         )}
         {favorites.some((currentBook) => currentBook.id === book.id) && (
           <div id="heart">❤️</div>
-        )}
-        Add to favorites
+        )}{" "}
+        {text && "Add to favorites"}
       </button>
     </>
   );

@@ -96,7 +96,7 @@ export default function BookView() {
                 </a>
               </div>
 
-              <AddToFavoritesButton bookProp={book} />
+              <AddToFavoritesButton bookProp={book} text={true} />
             </div>
           </div>
           <div>

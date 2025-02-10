@@ -16,10 +16,10 @@ export default function RemoveFavoriteButton(bookId) {
       style={{
         height: "30px",
         width: "40px",
-        marginTop: "2rem",
         backgroundColor: "#e55",
         border: "none",
         color: "white",
+        cursor: "pointer",
       }}
     >
       X

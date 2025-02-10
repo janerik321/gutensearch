@@ -10,33 +10,27 @@ export default function ResultsView() {
   const { loading, setLoading, error, setError, result, setResult } =
     useContext(AppContext);
 
-  // console.log(params);
-
   useEffect(() => {
     const fetchResult = async () => {
       try {
         const fetcher = params.search;
         setError(null);
         setLoading(true);
-        // console.log(params);
-        // console.log(`fetching ${params.search}...`);
+
         const response = await fetch(
           `https://gutendex.com/books/?${params.search}`
-          // currentFetch
         );
         if (!response.ok) {
           throw new Error(`Failed to fetch the ${category} category`);
         }
-        // console.log("...");
+
         const data = await response.json();
-        // console.log(data);
+
         setResult(data);
-        // console.log(result);
       } catch (err) {
         setError(err.message);
       } finally {
         setLoading(false);
-        // console.log("done!");
       }
     };
     fetchResult();
@@ -54,9 +48,16 @@ export default function ResultsView() {
     >
       {loading && (
         <>
-          <p>{`Fetching ${params.search.slice(
-            params.search.indexOf("=") + 1
-          )}...`}</p>
+          <p>
+            {params.search.indexOf("topic=") >= 0 &&
+              `Fetching results for '${params.search.slice(
+                params.search.indexOf("topic=") + 6
+              )}'...`}
+            {params.search.indexOf("search=") >= 0 &&
+              `Fetching results for '${params.search.slice(
+                params.search.indexOf("search=") + 7
+              )}'...`}
+          </p>
           <Spinner />
         </>
       )}
@@ -70,17 +71,39 @@ export default function ResultsView() {
           }}
         >
           <h3 style={{ textAlign: "center" }}>
-            {`${result.count} results for ${params.search.slice(
-              params.search.indexOf("=") + 1
-            )}`}
-            {/* <Spinner /> */}
+            {params.search.indexOf("topic=") >= 0 &&
+              `${result.count} results for '${params.search.slice(
+                params.search.indexOf("topic=") + 6
+              )}'`}
+            {params.search.indexOf("search=") >= 0 &&
+              `${result.count} results for '${params.search.slice(
+                params.search.indexOf("search=") + 7
+              )}'`}
           </h3>
-          {result.results.map((book) => (
-            <BookCard book={book} key={book.id} />
-          ))}
-
-          {result.previous && <DirectionButton direction="previous" />}
-          {result.next && <DirectionButton direction="next" />}
+          <h3 style={{ textAlign: "center" }}>
+            {result.previous &&
+              `Page ${params.search.slice(
+                params.search.indexOf("page=") + 5,
+                params.search.indexOf("&")
+              )} of ${Math.ceil(result.count / 32)}`}
+            {!result.previous && `Page 1 of ${Math.ceil(result.count / 32)}`}
+          </h3>
+          <div
+          // style={{
+          //   display: "flex",
+          //   flexWrap: "wrap",
+          //   gap: "4rem",
+          //   justifyContent: "center",
+          // }}
+          >
+            {result.results.map((book) => (
+              <BookCard key={book.id} book={book} favoritesButton={true} />
+            ))}
+          </div>
+          <div>
+            {result.previous && <DirectionButton direction="previous" />}
+            {result.next && <DirectionButton direction="next" />}
+          </div>
         </div>
       )}
     </div>

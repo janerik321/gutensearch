@@ -3,9 +3,10 @@
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
-  /* font-family: "Frank Ruhl Libre"; */
+  font-family: "Frank Ruhl Libre";
   /* font-family: "Open Sans"; */
   /* font-family: "Roboto Flex"; */
+  /* font-family: "Cambo"; */
 }
 
 :root {

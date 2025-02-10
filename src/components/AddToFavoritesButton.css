@@ -1,13 +1,18 @@
 #add-to-favorites-button {
   height: 30px;
   width: fit-content;
-  padding: 4px 7px;
+  padding: 5px 10px;
   background-color: lightgreen;
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: "pointer";
   /* border-radius: 5px; */
+}
+
+#add-to-favorites-button:hover {
+  cursor: pointer;
 }
 
 #add-to-favorites-button > div {

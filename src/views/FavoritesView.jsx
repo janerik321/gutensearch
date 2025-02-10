@@ -28,9 +28,9 @@ export default function FavoritesView() {
       )}
       {favorites.map((book) => (
         <div key={book.id} style={{ display: "flex" }}>
-          <BookCard book={book} />
+          <BookCard book={book} removeButton={true} />
           {/* {console.log(book)} */}
-          <RemoveFavoriteButton bookId={book.id} />
+          {/* <RemoveFavoriteButton bookId={book.id} /> */}
         </div>
       ))}
     </div>

@@ -26,7 +26,7 @@ export default function DirectionButton(props) {
           to={`/gutensearch/search/${page}`}
           style={{
             border: "1px solid grey",
-            padding: "2px 7px",
+            padding: "5px 10px",
             margin: "0 0.5rem",
           }}
         >
