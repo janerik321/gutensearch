@@ -7,11 +7,9 @@ export default function Header() {
   const { search, setSearch, page, setPage } = useContext(AppContext);
   const navigate = useNavigate();
 
-  // console.log(Categories());
-
   function handleSubmit(e, search) {
     e.preventDefault();
-    // console.log(e);
+
     navigate(`/gutensearch/search/search=${search}`);
   }
 
@@ -37,13 +35,17 @@ export default function Header() {
             placeholder="Search..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            style={{ padding: "0.2rem 0.5rem", borderRadius: "20px 0 0 20px" }}
+            style={{
+              padding: "0.2rem 1rem",
+              borderRadius: "20px 0 0 20px",
+              // width: "700px",
+            }}
           />
           <input
             type="submit"
             value="Go"
             style={{
-              padding: "0.2rem 0.5rem",
+              padding: "0.2rem 0.7rem",
               borderRadius: "0 20px 20px 0",
               backgroundColor: "lightgreen",
               color: "#000c",

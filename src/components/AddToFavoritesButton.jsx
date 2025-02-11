@@ -19,11 +19,11 @@ export default function AddToFavoritesButton(bookProp) {
     <>
       <button onClick={handleFavorite} id="add-to-favorites-button">
         {!favorites.some((currentBook) => currentBook.id === book.id) && (
-          <div>💚</div>
+          <div>🤍</div>
         )}
         {favorites.some((currentBook) => currentBook.id === book.id) && (
           <div id="heart">❤️</div>
-        )}{" "}
+        )}
         {text && "Add to favorites"}
       </button>
     </>

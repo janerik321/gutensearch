@@ -20,6 +20,12 @@ h1 {
   /* text-shadow: 0px 0px 4px black; */
 }
 
+h2,
+h3,
+h4 {
+  font-weight: 500;
+}
+
 input {
   border: none;
   /* border-radius: 20px; */

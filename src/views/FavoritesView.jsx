@@ -21,18 +21,35 @@ export default function FavoritesView() {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        padding: "2rem",
       }}
     >
-      {favorites.length === 0 && (
-        <h3 style={{ marginTop: "2rem" }}>No favorites to display</h3>
-      )}
-      {favorites.map((book) => (
-        <div key={book.id} style={{ display: "flex" }}>
-          <BookCard book={book} removeButton={true} />
-          {/* {console.log(book)} */}
-          {/* <RemoveFavoriteButton bookId={book.id} /> */}
-        </div>
-      ))}
+      <div
+        style={{
+          textAlign: "center",
+        }}
+      >
+        <h2>Favorites</h2>
+        {favorites.length > 0 && <h3>{favorites.length} books</h3>}
+        {favorites.length === 0 && <h3>No favorites to display</h3>}
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          gap: "2rem 3rem",
+          justifyContent: "center",
+          margin: "2rem",
+        }}
+      >
+        {favorites.map((book) => (
+          <div key={book.id}>
+            <BookCard book={book} removeButton={true} />
+            {/* {console.log(book)} */}
+            {/* <RemoveFavoriteButton bookId={book.id} /> */}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

@@ -36,6 +36,10 @@ export default function BookView() {
         setLoading(true);
         const response = await fetch(`https://gutendex.com/books/${params.id}`);
 
+        if (!response.ok) {
+          throw new Error(`Failed to fetch book #${params.id}.`);
+        }
+
         const data = await response.json();
         setBook(data);
       } catch (err) {
@@ -65,7 +69,14 @@ export default function BookView() {
       )}
 
       {book && (
-        <div style={{ maxWidth: "700px", display: "flex", gap: "2rem" }}>
+        <div
+          style={{
+            maxWidth: "700px",
+            display: "flex",
+            gap: "2rem",
+            margin: "0 2rem",
+          }}
+        >
           <div style={{ textAlign: "right" }}>
             <img
               src={book.formats["image/jpeg"]}
@@ -84,12 +95,17 @@ export default function BookView() {
               }}
             >
               <div style={{ margin: "0.5rem 0" }}>
-                <a href={book.formats["text/html"]} className="button">
+                <a
+                  href={book.formats["text/html"]}
+                  target="_blank"
+                  className="button"
+                >
                   HTML
                 </a>
                 {" · "}
                 <a
                   href={book.formats["text/plain; charset=us-ascii"]}
+                  target="_blank"
                   className="button"
                 >
                   Plain text

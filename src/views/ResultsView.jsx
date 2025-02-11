@@ -7,8 +7,15 @@ import Spinner from "../components/Spinner";
 
 export default function ResultsView() {
   const params = useParams();
-  const { loading, setLoading, error, setError, result, setResult } =
+  const { loading, setLoading, error, setError, result, setResult, favorites } =
     useContext(AppContext);
+
+  useEffect(() => {
+    function saveToLocal() {
+      localStorage.setItem("favorites", JSON.stringify(favorites));
+    }
+    saveToLocal();
+  }, [favorites]);
 
   useEffect(() => {
     const fetchResult = async () => {
@@ -21,7 +28,7 @@ export default function ResultsView() {
           `https://gutendex.com/books/?${params.search}`
         );
         if (!response.ok) {
-          throw new Error(`Failed to fetch the ${category} category`);
+          throw new Error(`Failed to fetch ${params.search}.`);
         }
 
         const data = await response.json();
@@ -89,12 +96,13 @@ export default function ResultsView() {
             {!result.previous && `Page 1 of ${Math.ceil(result.count / 32)}`}
           </h3>
           <div
-          // style={{
-          //   display: "flex",
-          //   flexWrap: "wrap",
-          //   gap: "4rem",
-          //   justifyContent: "center",
-          // }}
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "2rem 3rem",
+              justifyContent: "center",
+              margin: "2rem",
+            }}
           >
             {result.results.map((book) => (
               <BookCard key={book.id} book={book} favoritesButton={true} />

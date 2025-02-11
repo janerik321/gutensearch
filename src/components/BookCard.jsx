@@ -9,13 +9,12 @@ export default function BookCard(prop) {
   const removeButton = prop.removeButton;
 
   return (
-    <div style={{ display: "flex", margin: "2rem 0" }}>
+    <div style={{ display: "flex" }}>
       <Link
         to={`/gutensearch/book/${book.id}`}
         style={{
           minHeight: "180px",
           width: "500px",
-
           padding: "1rem",
           display: "flex",
           gap: "2rem",
@@ -28,7 +27,6 @@ export default function BookCard(prop) {
           src={book.formats["image/jpeg"]}
           alt=""
           style={{
-            //   border: "1px solid #ddd",
             boxShadow: "0px 4px 10px #bbb",
             maxWidth: "200px",
             maxHeight: "146px",
