@@ -1,7 +1,26 @@
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 import Language from "./Language";
 import AddToFavoritesButton from "./AddToFavoritesButton";
 import RemoveFavoriteButton from "./RemoveFavoriteButton";
+
+const Card = styled(Link)`
+  min-height: 180px;
+  width: 500px;
+  padding: 1rem;
+  display: flex;
+  gap: 2rem;
+  border: 1px solid #ccc;
+  background-color: #fcfcfc;
+  overflow: hidden;
+`;
+
+const Cover = styled.img`
+  box-shadow: 0px 4px 10px #bbb;
+  max-width: 200px;
+  max-height: 146px;
+  object-fit: contain;
+`;
 
 export default function BookCard(prop) {
   const book = prop.book;
@@ -10,29 +29,12 @@ export default function BookCard(prop) {
 
   return (
     <div style={{ display: "flex" }}>
-      <Link
-        to={`/gutensearch/book/${book.id}`}
-        style={{
-          minHeight: "180px",
-          width: "500px",
-          padding: "1rem",
-          display: "flex",
-          gap: "2rem",
-          border: "1px solid #ccc",
-          backgroundColor: "#fcfcfc",
-          overflow: "hidden",
-        }}
-      >
-        <img
+      <Card to={`/gutensearch/book/${book.id}`}>
+        <Cover
           src={book.formats["image/jpeg"]}
-          alt=""
-          style={{
-            boxShadow: "0px 4px 10px #bbb",
-            maxWidth: "200px",
-            maxHeight: "146px",
-          }}
+          alt={`The cover of ${book.title}`}
         />
-        <div style={{}}>
+        <div>
           <h3>{book.title}</h3>
           {book.authors.length > 0 && (
             <h4>by {book.authors.map((author) => `${author.name} `)} </h4>
@@ -40,7 +42,7 @@ export default function BookCard(prop) {
 
           <p>{book.languages.map((language) => Language(language))} </p>
         </div>
-      </Link>
+      </Card>
       {favoritesButton && <AddToFavoritesButton bookProp={book} />}
       {removeButton && <RemoveFavoriteButton bookId={book.id} />}
     </div>

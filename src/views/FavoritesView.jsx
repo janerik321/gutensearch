@@ -18,9 +18,6 @@ export default function FavoritesView() {
   return (
     <div
       style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
         padding: "2rem",
       }}
     >
@@ -40,6 +37,7 @@ export default function FavoritesView() {
           gap: "2rem 3rem",
           justifyContent: "center",
           margin: "2rem",
+          // width: "min-content",
         }}
       >
         {favorites.map((book) => (

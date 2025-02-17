@@ -38,7 +38,7 @@ export default function Header() {
             style={{
               padding: "0.2rem 1rem",
               borderRadius: "20px 0 0 20px",
-              // width: "700px",
+              width: "",
             }}
           />
           <input
