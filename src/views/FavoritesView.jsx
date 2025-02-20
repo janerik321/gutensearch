@@ -1,7 +1,21 @@
 import { useContext } from "react";
 import { AppContext } from "../App";
 import BookCard from "../components/BookCard";
-import RemoveFavoriteButton from "../components/RemoveFavoriteButton";
+import styled from "styled-components";
+
+const BooksContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
+  justify-content: center;
+  margin: 2rem;
+`;
+
+const MainArea = styled.div`
+  margin: 2rem;
+  padding: 2rem;
+  text-align: center;
+`;
 
 export default function FavoritesView() {
   const { favorites, setFavorites } = useContext(AppContext);
@@ -12,34 +26,14 @@ export default function FavoritesView() {
 
   saveToLocal();
 
-  console.log(favorites);
-  //   RemoveFavoriteButton("a");
-
   return (
-    <div
-      style={{
-        padding: "2rem",
-      }}
-    >
-      <div
-        style={{
-          textAlign: "center",
-        }}
-      >
+    <>
+      <MainArea>
         <h2>Favorites</h2>
         {favorites.length > 0 && <h3>{favorites.length} books</h3>}
         {favorites.length === 0 && <h3>No favorites to display</h3>}
-      </div>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "2rem 3rem",
-          justifyContent: "center",
-          margin: "2rem",
-          // width: "min-content",
-        }}
-      >
+      </MainArea>
+      <BooksContainer>
         {favorites.map((book) => (
           <div key={book.id}>
             <BookCard book={book} removeButton={true} />
@@ -47,7 +41,7 @@ export default function FavoritesView() {
             {/* <RemoveFavoriteButton bookId={book.id} /> */}
           </div>
         ))}
-      </div>
-    </div>
+      </BooksContainer>
+    </>
   );
 }

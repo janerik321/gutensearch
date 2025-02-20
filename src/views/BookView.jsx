@@ -4,6 +4,41 @@ import { AppContext } from "../App";
 import Language from "../components/Language";
 import AddToFavoritesButton from "../components/AddToFavoritesButton";
 import Spinner from "../components/Spinner";
+import styled from "styled-components";
+
+const Links = styled.div`
+  margin: 0.5rem 0;
+`;
+
+const LinksAndFavoritesButton = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+`;
+
+const CoverImage = styled.img`
+  max-height: 300px;
+  box-shadow: 0px 4px 10px #bbb;
+  margin-bottom: 0.5rem;
+`;
+
+const CoverAndLinks = styled.div`
+  text-align: right;
+`;
+
+const BookContent = styled.div`
+  max-width: 700px;
+  display: flex;
+  gap: 2rem;
+  margin: 0 2rem;
+`;
+
+const MainArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+`;
 
 export default function BookView() {
   const params = useParams();
@@ -53,14 +88,7 @@ export default function BookView() {
   }, []);
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        padding: "2rem 0",
-      }}
-    >
+    <MainArea>
       {loading && (
         <>
           <p>Fetching...</p>
@@ -69,32 +97,12 @@ export default function BookView() {
       )}
 
       {book && (
-        <div
-          style={{
-            maxWidth: "700px",
-            display: "flex",
-            gap: "2rem",
-            margin: "0 2rem",
-          }}
-        >
-          <div style={{ textAlign: "right" }}>
-            <img
-              src={book.formats["image/jpeg"]}
-              style={{
-                maxHeight: "300px",
-                boxShadow: "0px 4px 10px #bbb",
-                marginBottom: "0.5rem",
-              }}
-            />
+        <BookContent>
+          <CoverAndLinks>
+            <CoverImage src={book.formats["image/jpeg"]} />
             <p>Links:</p>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "end",
-              }}
-            >
-              <div style={{ margin: "0.5rem 0" }}>
+            <LinksAndFavoritesButton>
+              <Links>
                 <a
                   href={book.formats["text/html"]}
                   target="_blank"
@@ -110,11 +118,11 @@ export default function BookView() {
                 >
                   Plain text
                 </a>
-              </div>
+              </Links>
 
               <AddToFavoritesButton bookProp={book} text={true} />
-            </div>
-          </div>
+            </LinksAndFavoritesButton>
+          </CoverAndLinks>
           <div>
             <h2>{book.title}</h2>
             <h3>by {book.authors.map((author) => `${author.name} `)} </h3>
@@ -137,8 +145,8 @@ export default function BookView() {
             <h4>Summary:</h4>
             <p>{book.summaries}</p>
           </div>
-        </div>
+        </BookContent>
       )}
-    </div>
+    </MainArea>
   );
 }

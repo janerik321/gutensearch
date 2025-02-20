@@ -4,6 +4,33 @@ import { AppContext } from "../App";
 import DirectionButton from "../components/DirectionButton";
 import BookCard from "../components/BookCard";
 import Spinner from "../components/Spinner";
+import styled from "styled-components";
+
+const BooksContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem 3rem;
+  justify-content: center;
+  margin: 2rem;
+`;
+
+const HeaderContent = styled.h3`
+  text-align: center;
+`;
+
+const ResultsContainer = styled.div`
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const MainArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2rem;
+`;
 
 export default function ResultsView() {
   const params = useParams();
@@ -45,14 +72,7 @@ export default function ResultsView() {
 
   console.log(result);
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        paddingTop: "2rem",
-      }}
-    >
+    <MainArea>
       {loading && (
         <>
           <p>
@@ -69,15 +89,8 @@ export default function ResultsView() {
         </>
       )}
       {!loading && result && (
-        <div
-          style={{
-            marginBottom: "2rem",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-          }}
-        >
-          <h3 style={{ textAlign: "center" }}>
+        <ResultsContainer>
+          <HeaderContent>
             {params.search.indexOf("topic=") >= 0 &&
               `${result.count} results for '${params.search.slice(
                 params.search.indexOf("topic=") + 6
@@ -86,34 +99,26 @@ export default function ResultsView() {
               `${result.count} results for '${params.search.slice(
                 params.search.indexOf("search=") + 7
               )}'`}
-          </h3>
-          <h3 style={{ textAlign: "center" }}>
+          </HeaderContent>
+          <HeaderContent>
             {result.previous &&
               `Page ${params.search.slice(
                 params.search.indexOf("page=") + 5,
                 params.search.indexOf("&")
               )} of ${Math.ceil(result.count / 32)}`}
             {!result.previous && `Page 1 of ${Math.ceil(result.count / 32)}`}
-          </h3>
-          <div
-            style={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: "2rem 3rem",
-              justifyContent: "center",
-              margin: "2rem",
-            }}
-          >
+          </HeaderContent>
+          <BooksContainer>
             {result.results.map((book) => (
               <BookCard key={book.id} book={book} favoritesButton={true} />
             ))}
-          </div>
+          </BooksContainer>
           <div>
             {result.previous && <DirectionButton direction="previous" />}
             {result.next && <DirectionButton direction="next" />}
           </div>
-        </div>
+        </ResultsContainer>
       )}
-    </div>
+    </MainArea>
   );
 }

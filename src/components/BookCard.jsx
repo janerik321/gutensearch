@@ -13,6 +13,7 @@ const Card = styled(Link)`
   border: 1px solid #ccc;
   background-color: #fcfcfc;
   overflow: hidden;
+  border-radius: 5px 0 5px 5px;
 `;
 
 const Cover = styled.img`

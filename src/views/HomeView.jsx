@@ -1,15 +1,19 @@
+import styled from "styled-components";
+
+const Title = styled.h1`
+  color: black;
+  margin: 2rem 0;
+`;
+
+const MainArea = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 export default function HomeView() {
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <h1 style={{ color: "black", margin: "2rem 0" }}>
-        Welcome to Gutensearch!
-      </h1>
+    <MainArea>
+      <Title>Welcome to Gutensearch!</Title>
       <h3>Search for books, and add them to your favorites.</h3>
       <br />
       <h3>
@@ -26,6 +30,6 @@ export default function HomeView() {
         </a>
         .
       </h3>
-    </div>
+    </MainArea>
   );
 }

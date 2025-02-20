@@ -1,6 +1,42 @@
 import { useContext } from "react";
 import { AppContext } from "../App";
-import "./addToFavoritesButton.css";
+import styled from "styled-components";
+
+const AddFavoriteButton = styled.button`
+  height: 30px;
+  width: fit-content;
+  padding: 5px 10px;
+  background-color: lightgreen;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  /* border-radius: 0 5px 5px 0; */
+
+  div {
+    width: 1.2rem;
+  }
+`;
+
+const RedHeart = styled.div`
+  font-size: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: add-to-favorite 500ms;
+
+  @keyframes add-to-favorite {
+    0% {
+      opacity: 0;
+      font-size: 2rem;
+    }
+    100% {
+      opacity: 1;
+      font-size: 1rem;
+    }
+  }
+`;
 
 export default function AddToFavoritesButton(bookProp) {
   const { favorites, setFavorites } = useContext(AppContext);
@@ -17,15 +53,15 @@ export default function AddToFavoritesButton(bookProp) {
 
   return (
     <>
-      <button onClick={handleFavorite} id="add-to-favorites-button">
+      <AddFavoriteButton onClick={handleFavorite}>
         {!favorites.some((currentBook) => currentBook.id === book.id) && (
           <div>🤍</div>
         )}
         {favorites.some((currentBook) => currentBook.id === book.id) && (
-          <div id="heart">❤️</div>
+          <RedHeart>❤️</RedHeart>
         )}
         {text && "Add to favorites"}
-      </button>
+      </AddFavoriteButton>
     </>
   );
 }

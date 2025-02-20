@@ -1,6 +1,14 @@
 import { useContext } from "react";
 import { AppContext } from "../App";
 import { useParams, Link } from "react-router-dom";
+import styled from "styled-components";
+
+const DirectionLink = styled(Link)`
+  border: 1px solid grey;
+  padding: 5px 10px;
+  margin: 0 0.5rem;
+  border: 1px solid #ccc;
+`;
 
 export default function DirectionButton(props) {
   const { result } = useContext(AppContext);
@@ -22,19 +30,9 @@ export default function DirectionButton(props) {
   return (
     <>
       {result && (
-        <Link
-          to={`/gutensearch/search/${page}`}
-          style={{
-            border: "1px solid grey",
-            padding: "5px 10px",
-            margin: "0 0.5rem",
-            border: "1px solid #ccc",
-            // backgroundColor: "lightgreen",
-            // color: "black",
-          }}
-        >
+        <DirectionLink to={`/gutensearch/search/${page}`}>
           {props.direction}
-        </Link>
+        </DirectionLink>
       )}
     </>
   );
