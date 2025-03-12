@@ -4,6 +4,10 @@ import Language from "./Language";
 import AddToFavoritesButton from "./AddToFavoritesButton";
 import RemoveFavoriteButton from "./RemoveFavoriteButton";
 
+const CompleteCard = styled.div`
+  display: flex;
+`;
+
 const Card = styled(Link)`
   min-height: 180px;
   width: 500px;
@@ -14,6 +18,13 @@ const Card = styled(Link)`
   background-color: #fcfcfc;
   overflow: hidden;
   border-radius: 5px 0 5px 5px;
+
+  @media screen and (max-width: 610px) {
+    width: calc(100vw - 54px);
+  }
+  @media screen and (max-width: 330px) {
+    flex-direction: column;
+  }
 `;
 
 const Cover = styled.img`
@@ -21,6 +32,10 @@ const Cover = styled.img`
   max-width: 200px;
   max-height: 146px;
   object-fit: contain;
+
+  @media screen and (max-width: 610px) {
+    max-width: 100px;
+  }
 `;
 
 export default function BookCard(prop) {
@@ -29,7 +44,7 @@ export default function BookCard(prop) {
   const removeButton = prop.removeButton;
 
   return (
-    <div style={{ display: "flex" }}>
+    <CompleteCard>
       <Card to={`/gutensearch/book/${book.id}`}>
         <Cover
           src={book.formats["image/jpeg"]}
@@ -46,6 +61,6 @@ export default function BookCard(prop) {
       </Card>
       {favoritesButton && <AddToFavoritesButton bookProp={book} />}
       {removeButton && <RemoveFavoriteButton bookId={book.id} />}
-    </div>
+    </CompleteCard>
   );
 }

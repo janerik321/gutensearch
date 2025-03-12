@@ -22,6 +22,10 @@ const GoButton = styled.input`
 const SearchBar = styled.input`
   padding: 0.2rem 1rem;
   border-radius: 20px 0 0 20px;
+
+  @media screen and (max-width: 315px) {
+    max-width: 60vw;
+  }
 `;
 
 const HeaderMain = styled.div`

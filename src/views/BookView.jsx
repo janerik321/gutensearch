@@ -14,6 +14,9 @@ const LinksAndFavoritesButton = styled.div`
   display: flex;
   flex-direction: column;
   align-items: end;
+  @media screen and (max-width: 500px) {
+    align-items: start;
+  }
 `;
 
 const CoverImage = styled.img`
@@ -24,6 +27,9 @@ const CoverImage = styled.img`
 
 const CoverAndLinks = styled.div`
   text-align: right;
+  @media screen and (max-width: 500px) {
+    text-align: left;
+  }
 `;
 
 const BookContent = styled.div`
@@ -31,6 +37,10 @@ const BookContent = styled.div`
   display: flex;
   gap: 2rem;
   margin: 0 2rem;
+
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 `;
 
 const MainArea = styled.div`

@@ -11,7 +11,7 @@ const BooksContainer = styled.div`
   flex-wrap: wrap;
   gap: 2rem 3rem;
   justify-content: center;
-  margin: 2rem;
+  margin: 2rem 0;
 `;
 
 const HeaderContent = styled.h3`
