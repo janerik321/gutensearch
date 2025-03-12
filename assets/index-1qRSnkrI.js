@@ -133,7 +133,9 @@ Please change the parent <Route path="${A}"> to <Route path="${A==="/"?"*":`${A}
   color: white;
   cursor: pointer;
   border-radius: 0 5px 5px 0;
-`;function Gy(r){const{setFavorites:o}=T.useContext(or);function a(s){o(c=>c.filter(f=>f.id!==s.bookId))}return H.jsx(Yy,{onClick:()=>a(r),children:"X"})}const Xy=Ie(Lr)`
+`;function Gy(r){const{setFavorites:o}=T.useContext(or);function a(s){o(c=>c.filter(f=>f.id!==s.bookId))}return H.jsx(Yy,{onClick:()=>a(r),children:"X"})}const Xy=Ie.div`
+  display: flex;
+`,Jy=Ie(Lr)`
   min-height: 180px;
   width: 500px;
   padding: 1rem;
@@ -143,12 +145,16 @@ Please change the parent <Route path="${A}"> to <Route path="${A==="/"?"*":`${A}
   background-color: #fcfcfc;
   overflow: hidden;
   border-radius: 5px 0 5px 5px;
-`,Jy=Ie.img`
+
+  @media screen and (max-width: 610px) {
+    width: calc(100vw - 40px);
+  }
+`,Zy=Ie.img`
   box-shadow: 0px 4px 10px #bbb;
   max-width: 200px;
   max-height: 146px;
   object-fit: contain;
-`;function jp(r){const o=r.book,a=r.favoritesButton,s=r.removeButton;return H.jsxs("div",{style:{display:"flex"},children:[H.jsxs(Xy,{to:`/gutensearch/book/${o.id}`,children:[H.jsx(Jy,{src:o.formats["image/jpeg"],alt:`The cover of ${o.title}`}),H.jsxs("div",{children:[H.jsx("h3",{children:o.title}),o.authors.length>0&&H.jsxs("h4",{children:["by ",o.authors.map(c=>`${c.name} `)," "]}),H.jsxs("p",{children:[o.languages.map(c=>Dp(c))," "]})]})]}),a&&H.jsx(Mp,{bookProp:o}),s&&H.jsx(Gy,{bookId:o.id})]})}const Zy=Ie.div`
+`;function jp(r){const o=r.book,a=r.favoritesButton,s=r.removeButton;return H.jsxs(Xy,{children:[H.jsxs(Jy,{to:`/gutensearch/book/${o.id}`,children:[H.jsx(Zy,{src:o.formats["image/jpeg"],alt:`The cover of ${o.title}`}),H.jsxs("div",{children:[H.jsx("h3",{children:o.title}),o.authors.length>0&&H.jsxs("h4",{children:["by ",o.authors.map(c=>`${c.name} `)," "]}),H.jsxs("p",{children:[o.languages.map(c=>Dp(c))," "]})]})]}),a&&H.jsx(Mp,{bookProp:o}),s&&H.jsx(Gy,{bookId:o.id})]})}const qy=Ie.div`
   width: 35px;
   height: 35px;
   margin: 1rem;
@@ -167,12 +173,12 @@ Please change the parent <Route path="${A}"> to <Route path="${A==="/"?"*":`${A}
       transform: rotate(180deg);
     }
   }
-`,qy=Ie.div`
+`,by=Ie.div`
   width: 25px;
   height: 25px;
   background-color: white;
   border-radius: 50%;
-`;function zp(){return H.jsx(Zy,{children:H.jsx(qy,{})})}const by=Ie.div`
+`;function zp(){return H.jsx(qy,{children:H.jsx(by,{})})}const e0=Ie.div`
   display: flex;
   flex-wrap: wrap;
   gap: 2rem 3rem;
@@ -180,46 +186,46 @@ Please change the parent <Route path="${A}"> to <Route path="${A==="/"?"*":`${A}
   margin: 2rem;
 `,Bd=Ie.h3`
   text-align: center;
-`,e0=Ie.div`
+`,t0=Ie.div`
   margin-bottom: 2rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-`,t0=Ie.div`
+`,n0=Ie.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 2rem;
-`;function n0(){const r=ms(),{loading:o,setLoading:a,error:s,setError:c,result:f,setResult:p,favorites:h}=T.useContext(or);return T.useEffect(()=>{function m(){localStorage.setItem("favorites",JSON.stringify(h))}m()},[h]),T.useEffect(()=>{(async()=>{try{const g=r.search;c(null),a(!0);const k=await fetch(`https://gutendex.com/books/?${r.search}`);if(!k.ok)throw new Error(`Failed to fetch ${r.search}.`);const N=await k.json();p(N)}catch(g){c(g.message)}finally{a(!1)}})()},[r]),console.log(f),H.jsxs(t0,{children:[o&&H.jsxs(H.Fragment,{children:[H.jsxs("p",{children:[r.search.indexOf("topic=")>=0&&`Fetching results for '${r.search.slice(r.search.indexOf("topic=")+6)}'...`,r.search.indexOf("search=")>=0&&`Fetching results for '${r.search.slice(r.search.indexOf("search=")+7)}'...`]}),H.jsx(zp,{})]}),!o&&f&&H.jsxs(e0,{children:[H.jsxs(Bd,{children:[r.search.indexOf("topic=")>=0&&`${f.count} results for '${r.search.slice(r.search.indexOf("topic=")+6)}'`,r.search.indexOf("search=")>=0&&`${f.count} results for '${r.search.slice(r.search.indexOf("search=")+7)}'`]}),H.jsxs(Bd,{children:[f.previous&&`Page ${r.search.slice(r.search.indexOf("page=")+5,r.search.indexOf("&"))} of ${Math.ceil(f.count/32)}`,!f.previous&&`Page 1 of ${Math.ceil(f.count/32)}`]}),H.jsx(by,{children:f.results.map(m=>H.jsx(jp,{book:m,favoritesButton:!0},m.id))}),H.jsxs("div",{children:[f.previous&&H.jsx(Ud,{direction:"previous"}),f.next&&H.jsx(Ud,{direction:"next"})]})]})]})}const r0=Ie.div`
+`;function r0(){const r=ms(),{loading:o,setLoading:a,error:s,setError:c,result:f,setResult:p,favorites:h}=T.useContext(or);return T.useEffect(()=>{function m(){localStorage.setItem("favorites",JSON.stringify(h))}m()},[h]),T.useEffect(()=>{(async()=>{try{const g=r.search;c(null),a(!0);const k=await fetch(`https://gutendex.com/books/?${r.search}`);if(!k.ok)throw new Error(`Failed to fetch ${r.search}.`);const N=await k.json();p(N)}catch(g){c(g.message)}finally{a(!1)}})()},[r]),console.log(f),H.jsxs(n0,{children:[o&&H.jsxs(H.Fragment,{children:[H.jsxs("p",{children:[r.search.indexOf("topic=")>=0&&`Fetching results for '${r.search.slice(r.search.indexOf("topic=")+6)}'...`,r.search.indexOf("search=")>=0&&`Fetching results for '${r.search.slice(r.search.indexOf("search=")+7)}'...`]}),H.jsx(zp,{})]}),!o&&f&&H.jsxs(t0,{children:[H.jsxs(Bd,{children:[r.search.indexOf("topic=")>=0&&`${f.count} results for '${r.search.slice(r.search.indexOf("topic=")+6)}'`,r.search.indexOf("search=")>=0&&`${f.count} results for '${r.search.slice(r.search.indexOf("search=")+7)}'`]}),H.jsxs(Bd,{children:[f.previous&&`Page ${r.search.slice(r.search.indexOf("page=")+5,r.search.indexOf("&"))} of ${Math.ceil(f.count/32)}`,!f.previous&&`Page 1 of ${Math.ceil(f.count/32)}`]}),H.jsx(e0,{children:f.results.map(m=>H.jsx(jp,{book:m,favoritesButton:!0},m.id))}),H.jsxs("div",{children:[f.previous&&H.jsx(Ud,{direction:"previous"}),f.next&&H.jsx(Ud,{direction:"next"})]})]})]})}const l0=Ie.div`
   margin: 0.5rem 0;
-`,l0=Ie.div`
+`,o0=Ie.div`
   display: flex;
   flex-direction: column;
   align-items: end;
-`,o0=Ie.img`
+`,i0=Ie.img`
   max-height: 300px;
   box-shadow: 0px 4px 10px #bbb;
   margin-bottom: 0.5rem;
-`,i0=Ie.div`
-  text-align: right;
 `,a0=Ie.div`
+  text-align: right;
+`,u0=Ie.div`
   max-width: 700px;
   display: flex;
   gap: 2rem;
   margin: 0 2rem;
-`,u0=Ie.div`
+`,s0=Ie.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 2rem 0;
-`;function s0(){const r=ms(),{loading:o,setLoading:a,error:s,setError:c,book:f,setBook:p,favorites:h,setFavorites:m}=T.useContext(or);let g="";return T.useEffect(()=>{function k(){localStorage.setItem("favorites",JSON.stringify(h))}k()},[h]),T.useEffect(()=>{(async()=>{try{c(null),a(!0);const N=await fetch(`https://gutendex.com/books/${r.id}`);if(!N.ok)throw new Error(`Failed to fetch book #${r.id}.`);const R=await N.json();p(R)}catch(N){c(N.message)}finally{a(!1)}})()},[]),H.jsxs(u0,{children:[o&&H.jsxs(H.Fragment,{children:[H.jsx("p",{children:"Fetching..."}),H.jsx(zp,{})]}),f&&H.jsxs(a0,{children:[H.jsxs(i0,{children:[H.jsx(o0,{src:f.formats["image/jpeg"]}),H.jsx("p",{children:"Links:"}),H.jsxs(l0,{children:[H.jsxs(r0,{children:[H.jsx("a",{href:f.formats["text/html"],target:"_blank",className:"button",children:"HTML"})," · ",H.jsx("a",{href:f.formats["text/plain; charset=us-ascii"],target:"_blank",className:"button",children:"Plain text"})]}),H.jsx(Mp,{bookProp:f,text:!0})]})]}),H.jsxs("div",{children:[H.jsx("h2",{children:f.title}),H.jsxs("h3",{children:["by ",f.authors.map(k=>`${k.name} `)," "]}),H.jsx("br",{}),H.jsxs("div",{children:[H.jsx("h4",{children:"Topics:"}),f.subjects.map(k=>{g+=k.replace(" -- Fiction","")+" · "})," ",g.slice(0,g.length-3)]}),H.jsx("br",{}),H.jsxs("p",{children:["Language: ",f.languages.map(k=>Dp(k))," "]}),H.jsxs("p",{children:["Downloads: ",f.download_count]}),H.jsx("br",{}),H.jsx("h4",{children:"Summary:"}),H.jsx("p",{children:f.summaries})]})]})]})}const c0=Ie.div`
+`;function c0(){const r=ms(),{loading:o,setLoading:a,error:s,setError:c,book:f,setBook:p,favorites:h,setFavorites:m}=T.useContext(or);let g="";return T.useEffect(()=>{function k(){localStorage.setItem("favorites",JSON.stringify(h))}k()},[h]),T.useEffect(()=>{(async()=>{try{c(null),a(!0);const N=await fetch(`https://gutendex.com/books/${r.id}`);if(!N.ok)throw new Error(`Failed to fetch book #${r.id}.`);const R=await N.json();p(R)}catch(N){c(N.message)}finally{a(!1)}})()},[]),H.jsxs(s0,{children:[o&&H.jsxs(H.Fragment,{children:[H.jsx("p",{children:"Fetching..."}),H.jsx(zp,{})]}),f&&H.jsxs(u0,{children:[H.jsxs(a0,{children:[H.jsx(i0,{src:f.formats["image/jpeg"]}),H.jsx("p",{children:"Links:"}),H.jsxs(o0,{children:[H.jsxs(l0,{children:[H.jsx("a",{href:f.formats["text/html"],target:"_blank",className:"button",children:"HTML"})," · ",H.jsx("a",{href:f.formats["text/plain; charset=us-ascii"],target:"_blank",className:"button",children:"Plain text"})]}),H.jsx(Mp,{bookProp:f,text:!0})]})]}),H.jsxs("div",{children:[H.jsx("h2",{children:f.title}),H.jsxs("h3",{children:["by ",f.authors.map(k=>`${k.name} `)," "]}),H.jsx("br",{}),H.jsxs("div",{children:[H.jsx("h4",{children:"Topics:"}),f.subjects.map(k=>{g+=k.replace(" -- Fiction","")+" · "})," ",g.slice(0,g.length-3)]}),H.jsx("br",{}),H.jsxs("p",{children:["Language: ",f.languages.map(k=>Dp(k))," "]}),H.jsxs("p",{children:["Downloads: ",f.download_count]}),H.jsx("br",{}),H.jsx("h4",{children:"Summary:"}),H.jsx("p",{children:f.summaries})]})]})]})}const f0=Ie.div`
   display: flex;
   flex-wrap: wrap;
   gap: 2rem 3rem;
   justify-content: center;
   margin: 2rem;
-`,f0=Ie.div`
+`,d0=Ie.div`
   margin: 2rem;
   padding: 2rem;
   text-align: center;
-`;function d0(){const{favorites:r,setFavorites:o}=T.useContext(or);function a(){localStorage.setItem("favorites",JSON.stringify(r))}return a(),H.jsxs(H.Fragment,{children:[H.jsxs(f0,{children:[H.jsx("h2",{children:"Favorites"}),r.length>0&&H.jsxs("h3",{children:[r.length," books"]}),r.length===0&&H.jsx("h3",{children:"No favorites to display"})]}),H.jsx(c0,{children:r.map(s=>H.jsx("div",{children:H.jsx(jp,{book:s,removeButton:!0})},s.id))})]})}const p0=gg([{path:"/gutensearch/",element:H.jsx(Ay,{}),children:[{index:!0,element:H.jsx(Vy,{})},{path:"/gutensearch/*",element:H.jsx(Uy,{})},{path:"/gutensearch/search/:search",element:H.jsx(n0,{})},{path:"/gutensearch/book/:id",element:H.jsx(s0,{})},{path:"/gutensearch/favorites/",element:H.jsx(d0,{})}]}]);_m.createRoot(document.getElementById("root")).render(H.jsx(T.StrictMode,{children:H.jsx(Tg,{router:p0})}));
+`;function p0(){const{favorites:r,setFavorites:o}=T.useContext(or);function a(){localStorage.setItem("favorites",JSON.stringify(r))}return a(),H.jsxs(H.Fragment,{children:[H.jsxs(d0,{children:[H.jsx("h2",{children:"Favorites"}),r.length>0&&H.jsxs("h3",{children:[r.length," books"]}),r.length===0&&H.jsx("h3",{children:"No favorites to display"})]}),H.jsx(f0,{children:r.map(s=>H.jsx("div",{children:H.jsx(jp,{book:s,removeButton:!0})},s.id))})]})}const h0=gg([{path:"/gutensearch/",element:H.jsx(Ay,{}),children:[{index:!0,element:H.jsx(Vy,{})},{path:"/gutensearch/*",element:H.jsx(Uy,{})},{path:"/gutensearch/search/:search",element:H.jsx(r0,{})},{path:"/gutensearch/book/:id",element:H.jsx(c0,{})},{path:"/gutensearch/favorites/",element:H.jsx(p0,{})}]}]);_m.createRoot(document.getElementById("root")).render(H.jsx(T.StrictMode,{children:H.jsx(Tg,{router:h0})}));
