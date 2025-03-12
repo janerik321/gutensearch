@@ -88,10 +88,12 @@ Please change the parent <Route path="${A}"> to <Route path="${A==="/"?"*":`${A}
 `;function $y(){const{search:r,setSearch:o,page:a,setPage:s}=T.useContext(or),c=tp();function f(p,h){p.preventDefault(),c(`/gutensearch/search/search=${h}`)}return H.jsx(H.Fragment,{children:H.jsxs(Iy,{children:[H.jsx(Lr,{to:"/gutensearch/",children:H.jsx("h1",{children:"Gutensearch"})}),H.jsxs("form",{onSubmit:p=>f(p,r),children:[H.jsx(Fy,{type:"text",placeholder:"Search...",value:r,onChange:p=>o(p.target.value)}),H.jsx(Oy,{type:"submit",value:"Go"})]}),H.jsxs(zy,{children:[Dg().map(p=>H.jsxs(Lr,{to:`/gutensearch/search/topic=${p.toLowerCase()}`,children:[p," "]},p)),H.jsx(Lr,{to:"/gutensearch/favorites/",children:"🤍Favorites"})]})]})})}const or=T.createContext();function Ay(){function r(){const F=localStorage.getItem("favorites");return F?JSON.parse(F):(console.log("empty"),[])}r();const[o,a]=T.useState(!0),[s,c]=T.useState(null),[f,p]=T.useState(null),[h,m]=T.useState(null),[g,k]=T.useState(null),[N,R]=T.useState(""),[P,j]=T.useState(r());return H.jsxs(or.Provider,{value:{loading:o,setLoading:a,error:s,setError:c,result:f,setResult:p,book:h,setBook:m,currentFetch:g,setCurrentFetch:k,search:N,setSearch:R,favorites:P,setFavorites:j},children:[H.jsx($y,{}),H.jsx("main",{children:H.jsx(Kv,{})})]})}function Uy(){return H.jsx("h1",{children:"404"})}const By=Ie.h1`
   color: black;
   margin: 2rem 0;
+  text-align: center;
 `,Hy=Ie.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
 `;function Vy(){return H.jsxs(Hy,{children:[H.jsx(By,{children:"Welcome to Gutensearch!"}),H.jsx("h3",{children:"Search for books, and add them to your favorites."}),H.jsx("br",{}),H.jsxs("h3",{children:["Books hosted by"," ",H.jsx("a",{href:"https://www.gutenberg.org/",target:"_blank",children:"Project Gutenberg"}),"."]}),H.jsxs("h3",{children:["API:"," ",H.jsx("a",{href:"https://gutendex.com/",target:"_blank",children:"Gutendex"}),"."]})]})}const Wy=Ie(Lr)`
   border: 1px solid grey;
   padding: 5px 10px;
